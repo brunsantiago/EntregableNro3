@@ -11,19 +11,9 @@
     card_view:cardUseCompatPadding="true">
 
     <FrameLayout
-        android:id="@+id/fondoLayoutRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/picasso"
         android:orientation="vertical">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_gravity="bottom"
-            android:background="@drawable/fade_bg">
-
-        </FrameLayout>
 
         <TextView
             android:id="@+id/textViewTitulo"
@@ -40,5 +30,10 @@
             android:textStyle="bold" />
 
     </FrameLayout>
+
+    <ImageView
+        android:id="@+id/imageViewPaint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </android.support.v7.widget.CardView>

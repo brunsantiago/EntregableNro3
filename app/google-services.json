@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "131425338230",
+    "firebase_url": "https://entregablenro3.firebaseio.com",
+    "project_id": "entregablenro3",
+    "storage_bucket": "entregablenro3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:131425338230:android:8065ade2395727fb",
+        "android_client_info": {
+          "package_name": "com.example.dh.entregablenro3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "131425338230-q47q8ebm1dqsjirdp0s0nvjv6bn285q3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dh.entregablenro3",
+            "certificate_hash": "722e8a0944bcfc54d101b063218d70abf23839fa"
+          }
+        },
+        {
+          "client_id": "131425338230-62kbk6japg7jtqsej5fp1i06i7qv354f.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "131425338230-62kbk6japg7jtqsej5fp1i06i7qv354f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMx14Zkh1puiYCgrItG2D3dqVJ97WXnps"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "131425338230-62kbk6japg7jtqsej5fp1i06i7qv354f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

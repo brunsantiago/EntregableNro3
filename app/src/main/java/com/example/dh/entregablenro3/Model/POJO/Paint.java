@@ -1,8 +1,9 @@
 package com.example.dh.entregablenro3.Model.POJO;
 
 
+import java.io.Serializable;
 
-public class Paint {
+public class Paint implements Serializable {
 
     private String image;
     private String name;

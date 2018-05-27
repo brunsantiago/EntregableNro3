@@ -7,10 +7,10 @@
     tools:context="com.example.dh.entregablenro3.View.MainActivity">
 
     <TextView
-        android:id="@+id/login"
+        android:id="@+id/logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="LOGIN"
+        android:text="LOGOUT"
         android:textAlignment="center" />
 
     <FrameLayout
@@ -19,5 +19,7 @@
         android:layout_height="wrap_content">
 
     </FrameLayout>
+
+
 
 </LinearLayout>

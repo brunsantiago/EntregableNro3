@@ -14,7 +14,13 @@ import com.example.dh.entregablenro3.Controller.PaintController;
 import com.example.dh.entregablenro3.Model.POJO.Paint;
 import com.example.dh.entregablenro3.R;
 import com.example.dh.entregablenro3.ResultListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.List;
 
 public class MainFragment extends Fragment {
@@ -41,12 +47,14 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference reference = storage.getReference();
+        //reference = reference.child(unPaint.getImage());
+
         cargarPaints();
 
         recyclerViewPaints = view.findViewById(R.id.recyclerViewPaints);
-
         recyclerViewPaints.setHasFixedSize(true);
-
         recyclerViewPaints.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
 
         return view;
@@ -63,26 +71,15 @@ public class MainFragment extends Fragment {
                 PaintsRVAdapter unAdapterDePaints = new PaintsRVAdapter(getContext(),listaDePaints, new PaintsRVAdapter.NotificableDelClickRecycler() {
                     @Override
                     public void notificarClick(int posicion) {
-                        notificable.recibirPaintClickeado(posicion);
+                        notificable.recibirPaintClickeado(listaDePaints,posicion);
                     }
                 });
                 recyclerViewPaints.setAdapter(unAdapterDePaints);
         }});
-/*
-        listaDePaints = new ArrayList<>();
-
-        listaDePaints.add(new Paint("","La Martona","1"));
-        listaDePaints.add(new Paint("","Camp de Solei","1"));
-        listaDePaints.add(new Paint("","Jesus","1"));
-        listaDePaints.add(new Paint("","La Ultima Cena","1"));
-        listaDePaints.add(new Paint("","Comodines","1"));
-        listaDePaints.add(new Paint("","Chateau","1"));
-        listaDePaints.add(new Paint("","El Gato","1"));
-*/
     }
 
     public interface Notificable{
-        void recibirPaintClickeado(int posicion);
-
+        void recibirPaintClickeado(List<Paint> listaDePaints, int posicion);
     }
+
 }
