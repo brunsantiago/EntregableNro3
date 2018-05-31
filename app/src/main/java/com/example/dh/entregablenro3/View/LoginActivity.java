@@ -139,22 +139,8 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    private void signOut(){
-
-        FirebaseAuth.getInstance().signOut();
-        LoginManager.getInstance().logOut();
-        Toast.makeText(this, "Sesion Cerrada", Toast.LENGTH_SHORT).show();
-        loginActivity();
-    }
-
     private void mainActivity(){
         Intent intent = new Intent(this,MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
-
-    private void loginActivity(){
-        Intent intent = new Intent(this,LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

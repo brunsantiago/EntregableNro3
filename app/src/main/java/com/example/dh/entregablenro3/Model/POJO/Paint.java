@@ -9,6 +9,10 @@ public class Paint implements Serializable {
     private String name;
     private String artistId;
 
+    public Paint(){
+
+    }
+
     public Paint(String image, String name, String artistId) {
         this.image = image;
         this.name = name;

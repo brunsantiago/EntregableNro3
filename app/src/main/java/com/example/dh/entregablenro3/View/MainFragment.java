@@ -9,18 +9,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.dh.entregablenro3.Controller.PaintController;
 import com.example.dh.entregablenro3.Model.POJO.Paint;
 import com.example.dh.entregablenro3.R;
-import com.example.dh.entregablenro3.ResultListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
 
-import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainFragment extends Fragment {
@@ -28,6 +30,7 @@ public class MainFragment extends Fragment {
     RecyclerView recyclerViewPaints;
     List<Paint> listaDePaints;
     private Notificable notificable;
+    private FirebaseDatabase database;
 
 
     public MainFragment() {
@@ -44,13 +47,13 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference reference = storage.getReference();
+        database = FirebaseDatabase.getInstance();
 
-        cargarPaints();
+        listaDePaints = new ArrayList<>();
+
+        getPaints();
 
         recyclerViewPaints = view.findViewById(R.id.recyclerViewPaints);
         recyclerViewPaints.setHasFixedSize(true);
@@ -59,13 +62,19 @@ public class MainFragment extends Fragment {
         return view;
     }
 
-    public void cargarPaints(){
+    private void getPaints(){
 
-        PaintController paintController = new PaintController();
-        paintController.obtenerPaints(new ResultListener<List<Paint>>() {
+        DatabaseReference reference = database.getReference().child("dbpaints").child("paints");
+
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void finish(List<Paint> resultado) {
-                listaDePaints = resultado;
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Paint unPaint = snapshot.getValue(Paint.class);
+                    listaDePaints.add(unPaint);
+                }
+
                 PaintsRVAdapter unAdapterDePaints = new PaintsRVAdapter(getContext(),listaDePaints, new PaintsRVAdapter.NotificableDelClickRecycler() {
                     @Override
                     public void notificarClick(int posicion) {
@@ -73,7 +82,14 @@ public class MainFragment extends Fragment {
                     }
                 });
                 recyclerViewPaints.setAdapter(unAdapterDePaints);
-        }});
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Toast.makeText(getContext(), "Fallo", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public interface Notificable{

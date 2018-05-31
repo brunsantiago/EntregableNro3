@@ -68,7 +68,7 @@ public class DetalleActivity extends AppCompatActivity {
 
     private void getArtista(final String artistId){
 
-        DatabaseReference reference = database.getReference().child(ARTIST);
+        DatabaseReference reference = database.getReference().child("dbartist").child("artist");
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -95,15 +95,6 @@ public class DetalleActivity extends AppCompatActivity {
         });
     }
 
-    public void cargarArtista(){
-
-        Artist unArtista = new Artist("10","Santiago","Argentina","Sata");
-
-        DatabaseReference reference = database.getReference().child(ARTIST).child(unArtista.getArtistId());
-
-        reference.setValue(unArtista);
-
-    }
 
     private void cargarImagenDescargadaDelStorage(String imagePath) {
 

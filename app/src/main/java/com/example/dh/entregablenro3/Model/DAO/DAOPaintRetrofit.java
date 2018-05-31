@@ -3,7 +3,7 @@ package com.example.dh.entregablenro3.Model.DAO;
 
 import com.example.dh.entregablenro3.Model.POJO.ContenedorDePaints;
 import com.example.dh.entregablenro3.Model.POJO.Paint;
-import com.example.dh.entregablenro3.ResultListener;
+import com.example.dh.entregablenro3.View.ResultListener;
 
 import java.util.ArrayList;
 import java.util.List;

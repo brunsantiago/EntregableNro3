@@ -4,7 +4,7 @@ package com.example.dh.entregablenro3.Controller;
 
 import com.example.dh.entregablenro3.Model.DAO.DAOPaintRetrofit;
 import com.example.dh.entregablenro3.Model.POJO.Paint;
-import com.example.dh.entregablenro3.ResultListener;
+import com.example.dh.entregablenro3.View.ResultListener;
 
 import java.util.List;
 
