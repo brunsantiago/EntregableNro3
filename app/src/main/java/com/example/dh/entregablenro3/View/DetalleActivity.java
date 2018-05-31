@@ -112,17 +112,7 @@ public class DetalleActivity extends AppCompatActivity {
         reference = reference.child(imagePath);
 
         GlideApp.with(this).load(reference).into(imagePaint);
-        /*
-        try {
-            final File archivo = File.createTempFile("imagenTemporal", "jpg");
-            reference.getFile(archivo).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Picasso.get().load(archivo.getAbsoluteFile()).into(imagePaint);
-                }
-            });
-        } catch (Exception e) {}
-        */
+
     }
 
 }

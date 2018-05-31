@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Noti
     private void signOut(){
         FirebaseAuth.getInstance().signOut();
         LoginManager.getInstance().logOut();
-        Toast.makeText(this, "Sesion Cerrada", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Sesion cerrada con Exito", Toast.LENGTH_SHORT).show();
         loginActivity();
     }
 
