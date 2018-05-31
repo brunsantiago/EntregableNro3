@@ -66,7 +66,6 @@ public class PaintsRVAdapter extends RecyclerView.Adapter{
         return listaDePaints.size();
     }
 
-
     private class PaintViewHolder extends RecyclerView.ViewHolder{
 
         private TextView textViewTitulo;
@@ -87,40 +86,9 @@ public class PaintsRVAdapter extends RecyclerView.Adapter{
 
         public void cargarPaint(Paint unPaint){
             textViewTitulo.setText(unPaint.getName());
-
             reference = storage.getReference().child(unPaint.getImage());
-
             GlideApp.with(context).load(reference).into(imageViewPaint);
-
-            /*
-            try {
-                final File archivo = File.createTempFile(unPaint.getName(), "png");
-                reference.getFile(archivo).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                        Picasso.get().load(archivo.getAbsoluteFile()).into(imageViewPaint);
-                    }
-                });
-            } catch (Exception e) {}
-            */
         }
-    }
-
-    private void cargarImagenDescargadaDelStorage(String imagePath, final ImageView imageView) {
-
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference reference = storage.getReference();
-        reference = reference.child(imagePath);
-
-        try {
-            final File archivo = File.createTempFile("imagenTemporal", "jpg");
-            reference.getFile(archivo).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Picasso.get().load(archivo.getAbsoluteFile()).into(imageView);
-                }
-            });
-        } catch (Exception e) {}
     }
 
     public interface  NotificableDelClickRecycler{

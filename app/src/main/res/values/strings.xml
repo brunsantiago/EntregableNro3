@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">EntregableNro3</string>
+    <string name="app_name">Museum of Modern Art</string>
     <string name="facebook_app_id">381717462345969</string>
     <string name="fb_login_protocol_scheme">fb381717462345969</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 
 </resources>

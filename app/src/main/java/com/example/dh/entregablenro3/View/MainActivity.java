@@ -1,11 +1,15 @@
 package com.example.dh.entregablenro3.View;
 
 import android.content.Intent;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,32 +20,69 @@ import com.example.dh.entregablenro3.R;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 
-import org.w3c.dom.Text;
 
 import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements MainFragment.Notificable {
 
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle mToggle;
+    FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView logout = findViewById(R.id.logout);
+        NavigationView navigationView = findViewById(R.id.navigationView);
 
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signOut();
-            }
-        });
+        drawerLayout = findViewById(R.id.drawerLayout);
+        mToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
+        drawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mAuth = FirebaseAuth.getInstance();
+
+
+        NavigationViewListener navigationViewListener = new NavigationViewListener();
+        View hView = navigationView.getHeaderView(0);
+        TextView correo = hView.findViewById(R.id.correoUser);
+        if (mAuth != null) {correo.setText(mAuth.getCurrentUser().getEmail());}
+        navigationView.setNavigationItemSelectedListener(navigationViewListener);
 
         Fragment unFragment = new MainFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.contenedorMainFragment,unFragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(mToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private class NavigationViewListener implements NavigationView.OnNavigationItemSelectedListener{
+
+        @Override
+        public boolean onNavigationItemSelected(MenuItem item) {
+
+            if(item.getItemId() == R.id.pinturasActivity){
+
+            }
+            else if(item.getItemId() == R.id.loginActivity){
+
+            }
+            drawerLayout.closeDrawers();
+            return true;
+        }
+
     }
 
     @Override

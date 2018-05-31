@@ -49,7 +49,6 @@ public class MainFragment extends Fragment {
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference reference = storage.getReference();
-        //reference = reference.child(unPaint.getImage());
 
         cargarPaints();
 
@@ -63,7 +62,6 @@ public class MainFragment extends Fragment {
     public void cargarPaints(){
 
         PaintController paintController = new PaintController();
-
         paintController.obtenerPaints(new ResultListener<List<Paint>>() {
             @Override
             public void finish(List<Paint> resultado) {

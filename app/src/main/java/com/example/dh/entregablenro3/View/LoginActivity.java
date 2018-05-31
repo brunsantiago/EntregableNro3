@@ -39,8 +39,6 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG ="Mensaje";
     private CallbackManager callbackManager;
     private LoginButton loginButton;
-    private ImageView profileImage;
-    private TextView logout;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
@@ -64,20 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         };
         callbackManager = CallbackManager.Factory.create();
 
-        profileImage = findViewById(R.id.image_profile);
-        logout = findViewById(R.id.logout);
-
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
-
-        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-
-        if(!isLoggedIn){
-            //quiere decir que no esta logueado
-        }else{
-            //esta logueado
-            Picasso.get().load(Profile.getCurrentProfile().getProfilePictureUri(200,300))
-                    .placeholder(R.drawable.usuario).into(profileImage);
-        }
 
         loginButton = findViewById(R.id.login_button);
 
@@ -102,12 +87,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signOut();
-            }
-        });
     }
 
     @Override

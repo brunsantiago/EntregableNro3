@@ -22,8 +22,7 @@
                 android:layout_width="300dp"
                 android:layout_height="300dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="8dp"
-                android:background="@drawable/nofoto"/>
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/titlePaint"
