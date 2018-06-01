@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Noti
         public boolean onNavigationItemSelected(MenuItem item) {
 
             if(item.getItemId() == R.id.pinturasActivity){
-
+                loginActivity();
             }
             else if(item.getItemId() == R.id.loginActivity){
                 signOut();

@@ -41,14 +41,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG ="Mensaje";
     private CallbackManager callbackManager;
-    private LoginButton loginButton;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private EditText mEmailField;
     private EditText mPasswordField;
-    private Button loginFirebase;
-    private Button createAccount;
-
 
 
     @Override
@@ -61,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = mAuth.getCurrentUser();
-
                 if (user != null){
                 mainActivity();
                 }
@@ -70,12 +65,10 @@ public class LoginActivity extends AppCompatActivity {
         };
         callbackManager = CallbackManager.Factory.create();
 
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-
         mEmailField = findViewById(R.id.emailText);
         mPasswordField = findViewById(R.id.passwordText);
-        loginFirebase = findViewById(R.id.login);
-        createAccount = findViewById(R.id.createAccount);
+        Button loginFirebase = findViewById(R.id.login);
+        Button createAccount = findViewById(R.id.createAccount);
 
         loginFirebase.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,13 +85,12 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        loginButton = findViewById(R.id.login_button);
+        LoginButton loginButton = findViewById(R.id.login_button);
         loginButton.setReadPermissions("email");
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 handleFacebookAccessToken(loginResult.getAccessToken());
-                //mainActivity();
             }
 
             @Override
@@ -118,9 +110,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        //FirebaseUser currentUser = mAuth.getCurrentUser();
-        //updateUI(currentUser);
         mAuth.addAuthStateListener(mAuthListener);
     }
 
@@ -153,13 +142,11 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             mainActivity();
-                            //updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
                         }
 
                     }
@@ -188,15 +175,11 @@ public class LoginActivity extends AppCompatActivity {
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
                         }
 
                     }
                 });
     }
-
-
-
 
 
     private void handleFacebookAccessToken(AccessToken token) {
@@ -218,7 +201,6 @@ public class LoginActivity extends AppCompatActivity {
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
                         }
 
                         // ...

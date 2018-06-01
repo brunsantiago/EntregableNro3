@@ -8,6 +8,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.dh.entregablenro3.Controller.ArtistController;
+import com.example.dh.entregablenro3.Controller.PaintController;
 import com.example.dh.entregablenro3.Model.POJO.Artist;
 import com.example.dh.entregablenro3.Model.POJO.ContenedorDePaints;
 import com.example.dh.entregablenro3.Model.POJO.Paint;
@@ -31,28 +33,22 @@ import java.util.List;
 
 public class DetalleActivity extends AppCompatActivity {
 
-    private static final String ARTIST = "artists" ;
     private ImageView imagePaint;
     private TextView titlePaint;
-    private TextView name;
-    private TextView nationality;
-    private TextView influencedBy;
-    private FirebaseDatabase database;
-    private Artist artistaAMostrar;
+    private TextView nameArtist;
+    private TextView nationalityArtist;
+    private TextView influencedByArtist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
 
-    database = FirebaseDatabase.getInstance();
-
-
     imagePaint = findViewById(R.id.imagePaint);
     titlePaint = findViewById(R.id.titlePaint);
-    name = findViewById(R.id.name);
-    nationality = findViewById(R.id.nationality);
-    influencedBy = findViewById(R.id.influencedBy);
+    nameArtist = findViewById(R.id.nameArtist);
+    nationalityArtist = findViewById(R.id.nationalityArtist);
+    influencedByArtist = findViewById(R.id.influencedByArtist);
 
     Bundle bundle = getIntent().getExtras();
     ContenedorDePaints contenedorDePaints = (ContenedorDePaints) bundle.getSerializable("CONTENEDOR_DE_PAINTS");
@@ -60,51 +56,45 @@ public class DetalleActivity extends AppCompatActivity {
 
     titlePaint.setText(unPaint.getName());
 
-    getArtista(unPaint.getArtistId());
-
+    getArtist(unPaint.getArtistId());
     cargarImagenDescargadaDelStorage(unPaint.getImage());
 
     }
 
-    private void getArtista(final String artistId){
+    public void getArtist(String artistId){
 
-        DatabaseReference reference = database.getReference().child("dbartist").child("artist");
-
-        reference.addValueEventListener(new ValueEventListener() {
+        ArtistController artistController = new ArtistController();
+        artistController.getArtist(new ResultListener<Artist>() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-
-                    Artist unArtista = snapshot.getValue(Artist.class);
-                    if (unArtista.getArtistId().equals(artistId)){
-                        artistaAMostrar = unArtista;
-                        break;
-                    }
-                }
-                name.setText(artistaAMostrar.getName());
-                nationality.setText(artistaAMostrar.getNationality());
-                influencedBy.setText(artistaAMostrar.getInfluenced_by());
+            public void finish(Artist resultado) {
+                nameArtist.setText(resultado.getName());
+                nationalityArtist.setText(resultado.getNationality());
+                influencedByArtist.setText(resultado.getInfluenced_by());
             }
+        },artistId);
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Toast.makeText(DetalleActivity.this, "Fallo", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
-
 
     private void cargarImagenDescargadaDelStorage(String imagePath) {
 
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference reference = storage.getReference();
-        reference = reference.child(imagePath);
-
-        GlideApp.with(this).load(reference).into(imagePaint);
-
+        PaintController paintController = new PaintController();
+        paintController.obtenerImages(new ResultListener<StorageReference>() {
+            @Override
+            public void finish(StorageReference resultado) {
+                GlideApp.with(DetalleActivity.this).load(resultado).into(imagePaint);
+            }
+        },imagePath);
     }
 
+    private void mainActivity(){
+        Intent intent = new Intent(this,MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        mainActivity();
+    }
 }
 

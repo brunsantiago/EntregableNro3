@@ -50,7 +50,6 @@ public class MainFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
         database = FirebaseDatabase.getInstance();
-
         listaDePaints = new ArrayList<>();
 
         getPaints();
@@ -62,32 +61,19 @@ public class MainFragment extends Fragment {
         return view;
     }
 
-    private void getPaints(){
+    public void getPaints(){
 
-        DatabaseReference reference = database.getReference().child("dbpaints").child("paints");
-
-        reference.addValueEventListener(new ValueEventListener() {
+        PaintController paintController = new PaintController();
+        paintController.obtenerPaints(new ResultListener<List<Paint>>() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Paint unPaint = snapshot.getValue(Paint.class);
-                    listaDePaints.add(unPaint);
-                }
-
-                PaintsRVAdapter unAdapterDePaints = new PaintsRVAdapter(getContext(),listaDePaints, new PaintsRVAdapter.NotificableDelClickRecycler() {
+            public void finish(final List<Paint> resultado) {
+                PaintsRVAdapter unAdapterDePaints = new PaintsRVAdapter(getContext(),resultado, new PaintsRVAdapter.NotificableDelClickRecycler() {
                     @Override
                     public void notificarClick(int posicion) {
-                        notificable.recibirPaintClickeado(listaDePaints,posicion);
+                        notificable.recibirPaintClickeado(resultado,posicion);
                     }
                 });
                 recyclerViewPaints.setAdapter(unAdapterDePaints);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Toast.makeText(getContext(), "Fallo", Toast.LENGTH_SHORT).show();
             }
         });
     }

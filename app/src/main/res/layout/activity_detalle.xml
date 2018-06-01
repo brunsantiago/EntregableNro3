@@ -35,26 +35,65 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/name"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="Nombre del Artista" />
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/nationality"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="Nacionalidad del Artista" />
+                <TextView
+                    android:id="@+id/tituloArtista"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginStart="16dp"
+                    android:text="Artista: "
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/influencedBy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="Influencias del Artista" />
+                <TextView
+                    android:id="@+id/nameArtist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/tituloArtista"
+                    android:text="Nombre del Artista" />
+
+                <TextView
+                    android:id="@+id/tituloNacionalidad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tituloArtista"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginStart="16dp"
+                    android:text="Nacionalidad: "
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/nationalityArtist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/tituloNacionalidad"
+                    android:layout_toEndOf="@+id/tituloNacionalidad"
+                    android:text="Nacionalidad del Artista" />
+
+                <TextView
+                    android:id="@+id/tituloInfluencias"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tituloNacionalidad"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginStart="16dp"
+                    android:text="Influenciado por: "
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/influencedByArtist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/tituloInfluencias"
+                    android:layout_toEndOf="@+id/tituloInfluencias"
+                    android:text="Influencias del Artista" />
+
+            </RelativeLayout>
+
 
         </LinearLayout>
 
