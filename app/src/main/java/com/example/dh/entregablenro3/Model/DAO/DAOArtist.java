@@ -1,6 +1,8 @@
 package com.example.dh.entregablenro3.Model.DAO;
 
 
+
+
 import com.example.dh.entregablenro3.Model.POJO.Artist;
 import com.example.dh.entregablenro3.View.ResultListener;
 import com.google.firebase.database.DataSnapshot;
@@ -48,6 +50,7 @@ public class DAOArtist {
                 }
             });
         }
+
 }
 
 

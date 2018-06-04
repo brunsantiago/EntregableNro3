@@ -82,6 +82,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Noti
             else if(item.getItemId() == R.id.loginActivity){
                 signOut();
             }
+            else if(item.getItemId() == R.id.roomActivity){
+                roomActivity();
+            }
             drawerLayout.closeDrawers();
             return true;
         }
@@ -107,6 +110,12 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Noti
 
     private void loginActivity(){
         Intent intent = new Intent(this,LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    private void roomActivity(){
+        Intent intent = new Intent(this,RoomActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

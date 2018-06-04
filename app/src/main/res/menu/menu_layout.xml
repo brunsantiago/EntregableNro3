@@ -16,4 +16,9 @@
         android:title="Login">
     </item>
 
+    <item
+        android:id="@+id/roomActivity"
+        android:title="Room Activity">
+    </item>
+
 </menu>

@@ -1,10 +1,22 @@
 package com.example.dh.entregablenro3.Model.POJO;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
+@Entity(tableName = "artist_table")
 public class Artist {
 
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo
     private String artistId;
+    @ColumnInfo
     private String name;
+    @ColumnInfo
     private String nationality;
+    @ColumnInfo
     private String Influenced_by;
 
 
