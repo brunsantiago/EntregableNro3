@@ -2,6 +2,7 @@ package com.example.dh.entregablenro3.Model.POJO;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -19,9 +20,8 @@ public class Artist {
     @ColumnInfo
     private String Influenced_by;
 
-
     public Artist(){}
-
+    @Ignore
     public Artist(String artistId, String name, String nationality, String Influenced_by) {
         this.artistId = artistId;
         this.name = name;

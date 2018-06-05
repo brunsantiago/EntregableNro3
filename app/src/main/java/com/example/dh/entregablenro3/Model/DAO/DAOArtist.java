@@ -11,17 +11,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class DAOArtist {
 
     private static final String DBARTIST = "dbartist" ;
-    private Artist artistaAMostrar;
+
+    private List<Artist> listaDeArtistas;
 
     public DAOArtist() {
-    this.artistaAMostrar = new Artist();
+    this.listaDeArtistas = new ArrayList<>();
     }
 
-    public void obtenerArtista(final ResultListener<Artist> escuchadorDelControlador, final String artistId){
+    public void obtenerArtista(final ResultListener<List<Artist>> escuchadorDelControlador, final String artistId){
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference().child(DBARTIST).child("artist");
@@ -31,15 +35,10 @@ public class DAOArtist {
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-
                         Artist unArtista = snapshot.getValue(Artist.class);
-                        if (unArtista.getArtistId().equals(artistId)){
-                            artistaAMostrar = unArtista;
-                            break;
-                        }
+                        listaDeArtistas.add(unArtista);
                     }
-                    if (artistaAMostrar == null) {return;}
-                    escuchadorDelControlador.finish(artistaAMostrar);
+                    escuchadorDelControlador.finish(listaDeArtistas);
 
                 }
 

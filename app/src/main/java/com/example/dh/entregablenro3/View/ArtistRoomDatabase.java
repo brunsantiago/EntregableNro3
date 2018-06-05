@@ -8,7 +8,7 @@ import android.content.Context;
 import com.example.dh.entregablenro3.Model.DAO.DAOArtistRoom;
 import com.example.dh.entregablenro3.Model.POJO.Artist;
 
-@Database(entities = {Artist.class}, version = 1)
+@Database(entities = {Artist.class}, version = 1,exportSchema = false)
 public abstract class ArtistRoomDatabase extends RoomDatabase{
 
         public abstract DAOArtistRoom artistRoomDao();

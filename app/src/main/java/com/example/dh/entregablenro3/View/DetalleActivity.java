@@ -1,5 +1,6 @@
 package com.example.dh.entregablenro3.View;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -56,23 +57,26 @@ public class DetalleActivity extends AppCompatActivity {
 
     titlePaint.setText(unPaint.getName());
 
-    getArtist(unPaint.getArtistId());
+    getArtist(getApplicationContext(),unPaint.getArtistId());
     cargarImagenDescargadaDelStorage(unPaint.getImage());
 
     }
 
-    public void getArtist(String artistId){
+    public void getArtist(Context context, final String artistId){
 
         ArtistController artistController = new ArtistController();
-        artistController.getArtist(new ResultListener<Artist>() {
+        artistController.getArtist(new ResultListener<List<Artist>>() {
             @Override
-            public void finish(Artist resultado) {
-                nameArtist.setText(resultado.getName());
-                nationalityArtist.setText(resultado.getNationality());
-                influencedByArtist.setText(resultado.getInfluenced_by());
+            public void finish(List<Artist> resultado) {
+                for(Artist unArtista : resultado){
+                    if(unArtista.getArtistId().equals(artistId)){
+                        nameArtist.setText(unArtista.getName());
+                        nationalityArtist.setText(unArtista.getNationality());
+                        influencedByArtist.setText(unArtista.getInfluenced_by());
+                    }
+                }
             }
-        },artistId);
-
+        },artistId,context);
     }
 
     private void cargarImagenDescargadaDelStorage(String imagePath) {
