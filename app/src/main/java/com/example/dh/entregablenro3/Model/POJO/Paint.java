@@ -1,18 +1,29 @@
 package com.example.dh.entregablenro3.Model.POJO;
 
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 
+@Entity(tableName = "paint_table")
 public class Paint implements Serializable {
 
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo
     private String image;
+    @ColumnInfo
     private String name;
+    @ColumnInfo
     private String artistId;
 
     public Paint(){
-
     }
-
+    @Ignore
     public Paint(String image, String name, String artistId) {
         this.image = image;
         this.name = name;

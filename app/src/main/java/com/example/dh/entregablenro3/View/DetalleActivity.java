@@ -6,30 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.dh.entregablenro3.Controller.ArtistController;
 import com.example.dh.entregablenro3.Controller.PaintController;
 import com.example.dh.entregablenro3.Model.POJO.Artist;
 import com.example.dh.entregablenro3.Model.POJO.ContenedorDePaints;
 import com.example.dh.entregablenro3.Model.POJO.Paint;
 import com.example.dh.entregablenro3.R;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FileDownloadTask;
-import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 public class DetalleActivity extends AppCompatActivity {

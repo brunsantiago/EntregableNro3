@@ -6,21 +6,27 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 import com.example.dh.entregablenro3.Model.DAO.DAOArtistRoom;
+import com.example.dh.entregablenro3.Model.DAO.DAOPaintRoom;
 import com.example.dh.entregablenro3.Model.POJO.Artist;
+import com.example.dh.entregablenro3.Model.POJO.Paint;
 
-@Database(entities = {Artist.class}, version = 1,exportSchema = false)
-public abstract class ArtistRoomDatabase extends RoomDatabase{
+@Database(entities = {Artist.class,Paint.class}, version = 1,exportSchema = false)
+public abstract class AppRoomDatabase extends RoomDatabase {
+
+        public final static String DATABASE_NAME = "app_database";
 
         public abstract DAOArtistRoom artistRoomDao();
 
-        private static ArtistRoomDatabase INSTANCE;
+        public abstract DAOPaintRoom paintRoomDao();
 
-        public static ArtistRoomDatabase getDatabase(final Context context) {
+        private static AppRoomDatabase INSTANCE;
+
+        public static AppRoomDatabase getDatabase(final Context context) {
             if (INSTANCE == null) {
-                synchronized (ArtistRoomDatabase.class) {
+                synchronized (AppRoomDatabase.class) {
                     if (INSTANCE == null) {
                         INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                ArtistRoomDatabase.class, "artist_database")
+                                AppRoomDatabase.class, DATABASE_NAME)
                                 .build();
                     }
                 }

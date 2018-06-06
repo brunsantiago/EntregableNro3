@@ -3,26 +3,27 @@ package com.example.dh.entregablenro3.Model.DAO;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.example.dh.entregablenro3.Model.POJO.Artist;
+import com.example.dh.entregablenro3.Model.POJO.Paint;
 import com.example.dh.entregablenro3.View.AppRoomDatabase;
+import com.example.dh.entregablenro3.View.ResultListener;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
-public class DAOArtistRoomManager {
+public class DAOPaintRoomManager {
 
     private static AppRoomDatabase mDb;
-    private static List<Artist> listaDeArtistas;
+    private static List<Paint> listaDePaints;
 
-    public DAOArtistRoomManager(Context context){
+    public DAOPaintRoomManager(Context context){
         mDb = AppRoomDatabase.getDatabase(context);
     }
 
-    public DAOArtistRoomManager(Context context, List<Artist> listaDeArtistas){
+    public DAOPaintRoomManager(Context context, List<Paint> listaDePaints){
         mDb = AppRoomDatabase.getDatabase(context);
-        this.listaDeArtistas = listaDeArtistas;
+        this.listaDePaints = listaDePaints;
     }
 
     public void cargarDatabase() {
@@ -30,8 +31,8 @@ public class DAOArtistRoomManager {
         task.execute();
     }
 
-    public List<Artist> extraerDatabase() {
-        MostrarArtistDbAsync task = new MostrarArtistDbAsync();
+    public List<Paint> extraerDatabase() {
+        MostrarPaintsDbAsync task = new MostrarPaintsDbAsync();
         task.execute();
         try {
             return task.get();
@@ -42,9 +43,9 @@ public class DAOArtistRoomManager {
     }
 
     private static void cargarListaEnDatabase() {
-        mDb.artistRoomDao().deleteAll();
-        for (Artist unArtista : listaDeArtistas){
-            mDb.artistRoomDao().insert(unArtista);
+        mDb.paintRoomDao().deleteAll();
+        for (Paint unPaint : listaDePaints){
+            mDb.paintRoomDao().insert(unPaint);
         }
     }
 
@@ -56,12 +57,11 @@ public class DAOArtistRoomManager {
         }
     }
 
-    private static class MostrarArtistDbAsync extends AsyncTask<Void, Void, List<Artist>> {
+    private static class MostrarPaintsDbAsync extends AsyncTask<Void, Void, List<Paint>> {
         @Override
-        protected List<Artist> doInBackground(Void... voids) {
-            return AppRoomDatabase.getDatabase(getApplicationContext()).artistRoomDao().getAllArtist();
+        protected List<Paint> doInBackground(Void... voids) {
+            return AppRoomDatabase.getDatabase(getApplicationContext()).paintRoomDao().getAllPaint();
         }
     }
-
 
 }

@@ -1,5 +1,6 @@
 package com.example.dh.entregablenro3.Model.DAO;
 
+import android.content.Context;
 import android.widget.Toast;
 
 import com.example.dh.entregablenro3.Model.POJO.Paint;
@@ -46,7 +47,6 @@ public class DAOPaint {
                 //Toast.makeText(getContext(), "Fallo", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     public void obtenerImages(final ResultListener<StorageReference> escuchadorDelControlador, String imagePath){
