@@ -20,6 +20,7 @@ import com.example.dh.entregablenro3.Model.POJO.Paint;
 import com.example.dh.entregablenro3.R;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 import java.util.List;
@@ -82,6 +83,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Noti
             else if(item.getItemId() == R.id.loginActivity){
                 signOut();
             }
+            else if(item.getItemId() == R.id.chatActivity){
+                chatActivity();
+            }
             else if(item.getItemId() == R.id.roomActivity){
                 roomActivity();
             }
@@ -116,6 +120,12 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Noti
 
     private void roomActivity(){
         Intent intent = new Intent(this,RoomActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    private void chatActivity(){
+        Intent intent = new Intent(this,ChatActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

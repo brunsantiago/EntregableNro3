@@ -17,6 +17,11 @@
     </item>
 
     <item
+        android:id="@+id/chatActivity"
+        android:title="Chat Activity">
+    </item>
+
+    <item
         android:id="@+id/roomActivity"
         android:title="Room Activity">
     </item>

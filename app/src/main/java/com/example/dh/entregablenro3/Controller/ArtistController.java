@@ -46,5 +46,4 @@ public class ArtistController {
         return (actNetInfo != null && actNetInfo.isConnected());
     }
 
-
 }
