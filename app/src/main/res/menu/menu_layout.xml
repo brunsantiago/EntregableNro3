@@ -1,29 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Pinturas">
+    <item android:title="Secciones">
     <menu>
         <item
             android:id="@+id/pinturasActivity"
-            android:title="Todas las pinturas">
+            android:title="Todas las Obras">
         </item>
-
+        <item
+        android:id="@+id/chatActivity"
+        android:title="Chat Activity">
+    </item>
     </menu>
     </item>
 
     <item
         android:id="@+id/loginActivity"
         android:title="Login">
-    </item>
-
-    <item
-        android:id="@+id/chatActivity"
-        android:title="Chat Activity">
-    </item>
-
-    <item
-        android:id="@+id/roomActivity"
-        android:title="Room Activity">
     </item>
 
 </menu>

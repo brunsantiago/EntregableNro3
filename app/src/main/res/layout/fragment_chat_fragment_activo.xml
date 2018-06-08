@@ -10,10 +10,11 @@
     <FrameLayout
         android:id="@+id/frameChat"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="15dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
+        android:layout_marginBottom="5dp"
         android:alpha="0.9"
         android:layout_weight="1"
         android:background="@drawable/borde_redondeado"
@@ -36,19 +37,20 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="30dp"
         android:orientation="horizontal">
 
         <EditText
             android:id="@+id/textoMensaje"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginEnd="3dp"
             android:layout_weight="1"
             android:alpha="0.9"
             android:background="@drawable/borde_redondeado"
             android:hint="Ingrese su mensaje ..."
             android:inputType="textPersonName"
-            android:padding="8dp"
+            android:paddingStart="15dp"
             android:textSize="14sp" />
 
         <android.support.design.widget.FloatingActionButton

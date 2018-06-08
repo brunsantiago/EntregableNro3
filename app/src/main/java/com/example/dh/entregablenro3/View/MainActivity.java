@@ -86,9 +86,6 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Noti
             else if(item.getItemId() == R.id.chatActivity){
                 chatActivity();
             }
-            else if(item.getItemId() == R.id.roomActivity){
-                roomActivity();
-            }
             drawerLayout.closeDrawers();
             return true;
         }

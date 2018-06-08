@@ -70,8 +70,8 @@ public class LoginActivity extends AppCompatActivity {
 
         mEmailField = findViewById(R.id.emailText);
         mPasswordField = findViewById(R.id.passwordText);
-        Button loginFirebase = findViewById(R.id.login);
-        Button createAccount = findViewById(R.id.createAccount);
+        TextView loginFirebase = findViewById(R.id.login);
+        TextView createAccount = findViewById(R.id.createAccount);
 
         loginFirebase.setOnClickListener(new View.OnClickListener() {
             @Override
